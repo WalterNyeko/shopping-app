@@ -1,0 +1,13 @@
+version: 2
+jobs:
+ build:
+   docker:
+     - image: circleci/node:8
+   steps:
+     - checkout
+     - run:
+         name: Setup Dependencies
+         command: yarn install
+     - run: # run tests
+         name: Run Test and Coverage
+         command: yarn test:cov
