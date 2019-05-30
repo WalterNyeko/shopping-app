@@ -7,6 +7,9 @@ import bag from '../../images/shopping-bag.png';
 import SearchIcon from '@material-ui/icons/Search';
 import InputBase from '@material-ui/core/InputBase';
 import { useStyles } from '../../styles/UpperNav';
+import SpanModal from '../../containers/commons/SpanModal';
+import SignUpPage from '../../containers/customers/SignupPage';
+import LoginPage from '../../containers/customers/LoginPage';
 
 
  const UpperNav = () => {
@@ -18,9 +21,19 @@ import { useStyles } from '../../styles/UpperNav';
                     <div className="row">
                         <div className="col-md-4">
                             Hey! &nbsp;&nbsp;
-                            <NavLink to="/login" className={classes.navItems}>Sign In</NavLink>
+                            <SpanModal 
+                                spanText="Sign In"
+                                modalTitle="Login To Your ShopMate Account"
+                                modalWidth="450px"
+                                modalContent={<LoginPage/>}
+                                className={classes.navItems}/>
                                 &nbsp;&nbsp; or &nbsp;&nbsp;
-                            <NavLink to="/register" className={classes.navItems}>Register</NavLink>
+                            <SpanModal 
+                                spanText="Register"
+                                modalTitle="Register For A ShopMate"
+                                modalWidth="450px"
+                                modalContent={<SignUpPage/>}
+                                className={classes.navItems}/>
                         </div>
                         <div className="col-md-4">
                             <div className={classes.centralItems}>

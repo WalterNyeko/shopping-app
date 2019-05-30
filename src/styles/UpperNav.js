@@ -29,7 +29,8 @@ export const useStyles = makeStyles(theme => ({
     navItems: {
         color: 'red',
         fontWeight: '14px',
-        textDecoration: 'none'
+        textDecoration: 'none',
+        cursor: 'pointer'
     },
 
     defaultNavItems: {

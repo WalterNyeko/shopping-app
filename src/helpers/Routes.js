@@ -1,5 +1,5 @@
 const Routes = {
-    landingPage: "/"
+    landingPage: "/",
 }
 
 export default Routes;
