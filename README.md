@@ -1,4 +1,4 @@
-[![CircleCI](https://circleci.com/gh/WalterNyeko/shopping-app.svg?style=svg)](https://circleci.com/gh/WalterNyeko/shopping-app)
+[![CircleCI](https://circleci.com/gh/WalterNyeko/shopping-app/tree/develop.svg?style=svg)](https://circleci.com/gh/WalterNyeko/shopping-app/tree/develop)
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
