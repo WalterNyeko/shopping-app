@@ -1,5 +1,7 @@
 const Routes = {
-    landingPage: "/"
+    landingPage: "/",
+    signupPage: "/signup",
+    loginPage: "/login"
 }
 
 export default Routes;
