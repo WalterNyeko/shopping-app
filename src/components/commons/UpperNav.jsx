@@ -7,7 +7,7 @@ import bag from '../../images/shopping-bag.png';
 import SearchIcon from '@material-ui/icons/Search';
 import InputBase from '@material-ui/core/InputBase';
 import { useStyles } from '../../styles/UpperNav';
-import SpanModal from '../../containers/commons/SpanModal';
+import { SpanModal } from '../../../src/containers/commons/SpanModal.js';
 import SignUpPage from '../../containers/customers/SignupPage';
 import LoginPage from '../../containers/customers/LoginPage';
 
