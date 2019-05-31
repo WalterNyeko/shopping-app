@@ -1,8 +1,9 @@
 import React, { Fragment } from 'react';
+import { NavLink } from 'react-router-dom';
 import '../../styles/SideNav.css';
 
  const SideNav = (props) => {
-     const { content } = props;
+     const { content, allCategories } = props;
     return (
         <Fragment>
             <div className="row">
@@ -10,10 +11,9 @@ import '../../styles/SideNav.css';
                     <div className="sidenav">
                         <h6>Categories</h6>
                         <hr></hr>
-                        <a href="#">Christmas</a>
-                        <a href="#">Valentines</a>
-                        <a href="#">Ladies</a>
-                        <a href="#">Children</a>
+                        {allCategories && allCategories.map(({name, category_id}) => (
+                            <Fragment key={category_id}><NavLink to={`/category/${category_id}`}>{name}</NavLink></Fragment>
+                         ))}
                     </div>
                 </div>
                 <div className="col-md-10">
