@@ -10,4 +10,4 @@ jobs:
          command: yarn install
      - run: # run tests
          name: Run Test and Coverage
-         command: yarn test --coverage
+         command: yarn test:cov
