@@ -33,6 +33,13 @@ export const useStyles = makeStyles(theme => ({
         cursor: 'pointer'
     },
 
+    navItemsMainBar: {
+      color: 'white',
+      fontWeight: '18px',
+      textDecoration: 'none',
+      cursor: 'pointer',
+    },
+
     defaultNavItems: {
         color: 'gray',
         fontWeight: '14px',

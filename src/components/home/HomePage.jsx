@@ -3,11 +3,13 @@ import UpperNav from '../../containers/commons/UpperNav';
 import SideNav from '../../containers/commons/SideNav';
 
 const HomePage = (props) => {
-    const { content } = props;
+    const { content, departmentId } = props;
     return (
         <Fragment>
             <UpperNav/>
-            <SideNav content={content}/>
+            <SideNav 
+                content={content}
+                departmentId={departmentId}/>
         </Fragment>
     )
 }

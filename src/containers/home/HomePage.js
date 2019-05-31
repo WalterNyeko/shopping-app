@@ -4,10 +4,12 @@ import HomePageComponent from '../../components/home/HomePage';
 class HomePage extends Component {
 
     render() {
-        const { content } = this.props;
+        const { content, departmentId } = this.props;
         return (
             <Fragment>
-                <HomePageComponent content={content}/>
+                <HomePageComponent 
+                    content={content}
+                    departmentId={departmentId}/>
             </Fragment>
         )
     }
