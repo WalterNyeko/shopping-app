@@ -20,7 +20,7 @@ export const useStyles = makeStyles(theme => ({
       paddingBottom: theme.spacing(6),
       backgroundColor: '#f1f1f1',
       marginTop: '120px',
-      overflowX: 'none'
+      overflowX: 'none',
     },
     card: {
       height: '100%',
@@ -30,6 +30,7 @@ export const useStyles = makeStyles(theme => ({
     },
     cardMedia: {
       paddingTop: '56.25%', // 16:9
+      backgroundSize: '300px 100px'
     },
     cardContent: {
       flexGrow: 1,
