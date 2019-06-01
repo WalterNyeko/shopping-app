@@ -7,6 +7,7 @@ import CardMedia from '@material-ui/core/CardMedia';
 import { useStyles } from '../../styles/Products';
 import Grid from '@material-ui/core/Grid';
 import { Modal } from 'antd';
+import '../../styles/Products.css';
 
 
 const EachProduct = ({ 
@@ -23,7 +24,7 @@ const EachProduct = ({
 
     return (
         <Fragment>
-            {products && products.rows? products.rows.map(({product_id, name, description, price, discounted_price }) => (
+            {products && products.rows? products.rows.map(({product_id, thumbnail, name, description, price, discounted_price }) => (
               <Fragment>
               <Grid item key={product_id} xs={6} sm={3} md={3} onClick={showModal}>
                 <Card className={classes.card}>
@@ -32,7 +33,7 @@ const EachProduct = ({
                     </Typography>
                   <CardMedia
                     className={classes.cardMedia}
-                    image="https://source.unsplash.com/random"
+                    image={require(`../../images/${thumbnail}`)}
                     title="Image Title"
                   />
                   <CardContent className={classes.cardContent}>

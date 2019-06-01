@@ -7,7 +7,6 @@ import Footer from '../commons/Footer';
 import LinearProgress from '@material-ui/core/LinearProgress';
 import EachProduct from '../../containers/products/EachProduct';
 
-
 const Products = ({ products }) => {
   const classes = useStyles();
   
