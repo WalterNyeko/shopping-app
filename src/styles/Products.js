@@ -4,6 +4,10 @@ export const useStyles = makeStyles(theme => ({
     icon: {
       marginRight: theme.spacing(2),
     },
+    heading: {
+      padding: "10px", 
+      textAlign: 'center'
+    },
     heroContent: {
       backgroundColor: theme.palette.background.paper,
       padding: theme.spacing(6, 0, 4),
@@ -22,6 +26,7 @@ export const useStyles = makeStyles(theme => ({
       height: '100%',
       display: 'flex',
       flexDirection: 'column',
+      cursor: 'pointer'
     },
     cardMedia: {
       paddingTop: '56.25%', // 16:9
@@ -30,7 +35,18 @@ export const useStyles = makeStyles(theme => ({
       flexGrow: 1,
     },
     footer: {
-      backgroundColor: theme.palette.background.paper,
+      backgroundColor: '#f1f1f1',
       padding: theme.spacing(4),
+    },
+    progress: {
+      margin: theme.spacing(2),
+      color: '#00695c',
+    },
+    linearColorPrimary: {
+      backgroundColor: '#b2dfdb',
+      marginLeft: '0px'
+    },
+    linearBarColorPrimary: {
+      backgroundColor: '#00695c',
     },
   }));

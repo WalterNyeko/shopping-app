@@ -1,5 +1,5 @@
 import React from 'react';
-import { useStyles } from '../../styles/Categories';
+import { useStyles } from '../../styles/Products';
 import Typography from '@material-ui/core/Typography';
 
 
