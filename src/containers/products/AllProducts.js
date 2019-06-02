@@ -12,6 +12,7 @@ class Products extends Component {
     
     render() {
         const { products } = this.props.allProducts;
+        console.log(products)
         return (
             <Fragment>
                 <ProductsComponent 

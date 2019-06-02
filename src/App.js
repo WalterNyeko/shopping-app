@@ -1,7 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import { Provider } from "react-redux";
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import { ToastContainer } from "react-toastify";
 import Routes from './helpers/Routes';
 import LandingPage from './containers/home/LandingPage';
 import PerDepartmentPage from './containers/home/PerDepartmentPage';
@@ -21,7 +20,6 @@ class App extends Component {
 
           </Switch>
         </BrowserRouter>
-        <ToastContainer />
       </Fragment>
       </Provider>
     )
