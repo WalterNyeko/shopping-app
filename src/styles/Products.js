@@ -33,7 +33,7 @@ export const useStyles = makeStyles(theme => ({
       backgroundSize: '300px 100px'
     },
     cardContent: {
-      flexGrow: 1,
+      flexGrow: 0,
     },
     footer: {
       backgroundColor: '#f1f1f1',

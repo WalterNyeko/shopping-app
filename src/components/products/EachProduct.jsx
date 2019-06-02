@@ -9,7 +9,6 @@ import Grid from '@material-ui/core/Grid';
 import { Modal } from 'antd';
 import '../../styles/Products.css';
 
-
 const EachProduct = ({ 
     products,
     modalTitle, 
@@ -21,9 +20,11 @@ const EachProduct = ({
     visible, 
     }) => {
     const classes = useStyles();
+    console.log(products)
 
     return (
         <Fragment>
+            <Grid container spacing={2}>
             {products && products.rows? products.rows.map(({product_id, thumbnail, name, description, price, discounted_price }) => (
               <Fragment>
               <Grid item key={product_id} xs={6} sm={3} md={3} onClick={showModal}>
@@ -59,6 +60,7 @@ const EachProduct = ({
               </Grid>
               </Fragment>
             )): ('')}
+            </Grid>
             <Modal
                  title={modalTitle}
                  visible={visible}
