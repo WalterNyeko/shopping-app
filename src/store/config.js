@@ -1,4 +1,4 @@
-const baseUrl = `https://backendapi.turing.com`;
+export const baseUrl = `https://backendapi.turing.com`;
 export const fetchData = (url, type) => dispatch => {
     const finalUrl = baseUrl+url;
     fetch(finalUrl, {

@@ -1,3 +1,7 @@
 .MuiCardMedia-root {
-    background-size: contain !important;
+  background-size: contain !important;
+}
+
+.MuiContainer-root {
+  padding-top: 5px !important;
 }
