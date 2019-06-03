@@ -20,7 +20,6 @@ const EachProduct = ({
     visible, 
     }) => {
     const classes = useStyles();
-    console.log(products)
 
     return (
         <Fragment>

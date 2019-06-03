@@ -1,19 +1,48 @@
-import React from 'react';
-import { useStyles } from '../../styles/Products';
-import Typography from '@material-ui/core/Typography';
+import React from "react";
+import { NavLink } from "react-router-dom";
 
+const Footer = ({ departments }) => {
+  return (
+    <footer className="footer bg-dark sticky-bottom mb-auto py-3">
+      <div className="container text-center h5 mt-4">
+        {departments &&
+          departments.length &&
+          departments.map(({ name, department_id }) => (
+            <NavLink to={`/department/${department_id}`} key={department_id}>
+              <a className="text-white mr-5" href="#">
+                {name}
+              </a>
+            </NavLink>
+          ))}
+      </div>
 
-const Footer = () => {
-    const classes = useStyles();
-    return (
-        <footer className={classes.footer}>
-            <Typography variant="h6" align="center" gutterBottom>
-                SHOP MATE ONLINE
-            </Typography>
-            <Typography variant="subtitle1" align="center" color="textSecondary" component="p">
-                Shopping Mate Is Your Online Shop For All Your Needs
-            </Typography>
-        </footer>
-    )
-}
+      <div className="container text-center mt-4 mb-4">
+        <a className="text-white ml-5 mr-5 mb-4" href="#">
+          <i className="fab fa-instagram fa-3x" />
+        </a>
+        <a className="text-white ml-5 mr-5 mb-4" href="#">
+          <i className="fab fa-pinterest fa-3x" />
+        </a>
+        <a className="text-white ml-5 mr-5 mb-4" href="#">
+          <i className="fab fa-twitter fa-3x" />
+        </a>
+        <a className="text-white ml-5 mr-5 mb-4" href="#">
+          <i className="fab fa-facebook fa-3x" />
+        </a>
+      </div>
+
+      <div className="container text-center mt-4 mb-4">
+        <a className="text-white ml-5 mr-5 mb-4" href="#">
+          &copy; 2019 Shopmate Ltd
+        </a>
+        <a className="text-white ml-5 mr-5 mb-4" href="#">
+          Contact
+        </a>
+        <a className="text-white ml-5 mr-5 mb-4" href="#">
+          Privacy policy
+        </a>
+      </div>
+    </footer>
+  );
+};
 export default Footer;

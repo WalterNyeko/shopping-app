@@ -1,2 +1,47 @@
-@import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
-@import '~antd/dist/antd.css';
+@import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
+@import "~antd/dist/antd.css";
+@import "../node_modules/@fortawesome/fontawesome-free/css/all.css";
+body {
+  background-color: #f1f1f1 !important;
+  height: 100%;
+  overflow-x: hidden;
+}
+.logo {
+  font-size: 35px;
+  color: #ff3d3d !important;
+}
+
+.nav-link-item {
+  font-size: 18px;
+}
+
+.nav-margin {
+  margin-top: 40px !important;
+}
+
+.my-bag {
+  text-decoration: none !important;
+  color: black;
+  font-size: 18px;
+}
+
+.nav-list {
+  font-size: 18px;
+}
+
+.remove-order {
+  cursor: pointer;
+}
+.footer {
+  position: relative;
+  bottom: 0;
+  width: 100%;
+}
+
+.content {
+  margin-top: 120px;
+  min-height: 55vh !important;
+}
+.mycontent {
+  min-height: 70vh !important;
+}
