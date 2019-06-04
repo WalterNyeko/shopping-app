@@ -24,9 +24,11 @@ class ProductDeatilsPage extends Component {
   render() {
     const {
       allDepartments: { departments },
-      theProduct: { product, productReviews }
+      theProduct: { product, productReviews },
+      match: {
+        params: { productId }
+      }
     } = this.props;
-    console.log(productReviews);
     return (
       <Fragment>
         <UpperNav />
@@ -36,6 +38,7 @@ class ProductDeatilsPage extends Component {
               <ProductDeatilsContent
                 product={product}
                 productReviews={productReviews}
+                productId={productId}
               />
             }
           />

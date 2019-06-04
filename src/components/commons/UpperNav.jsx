@@ -8,18 +8,73 @@ import { SpanModal } from "../../../src/containers/commons/SpanModal";
 import SignUpPage from "../../containers/customers/SignupPage";
 import LoginPage from "../../containers/customers/LoginPage";
 
-const UpperNav = ({ isLoggedIn, allDepartments, totalAmount }) => {
+const UpperNav = ({
+  isLoggedIn,
+  allDepartments,
+  totalAmount,
+  handleLogout,
+  cartItems
+}) => {
   const classes = useStyles();
   const { departments } = allDepartments;
   return (
     <Fragment>
       <nav className="navbar navbar-expand-md sticky-top navbar-light bg-light pt-0 pb-0 fir">
         <div className="navbar-brand">
-          Hi!{" "}
           {isLoggedIn ? (
-            <Fragment>User</Fragment>
+            <Fragment>
+              <ul class="navbar-nav m-auto">
+                <li class="nav-item dropdown">
+                  <li class="nav-item">
+                    <a class="nav-link text-dark" href="#">
+                      Hey!
+                    </a>
+                  </li>
+                </li>
+                <li class="nav-item dropdown">
+                  <a
+                    class="nav-link dropdown-toggle text-dark nav-dropdown"
+                    href="#"
+                    id="dropdown03"
+                    data-toggle="dropdown"
+                    aria-haspopup="true"
+                    aria-expanded="false"
+                  >
+                    {localStorage.getItem("user")}
+                  </a>
+                  <div class="dropdown-menu" aria-labelledby="dropdown03">
+                    <NavLink to="/mycart">
+                      <i className="fas fa-shopping-cart text-dark ml-4" />
+                      <sup>
+                        <span className="badge badge-danger">
+                          {cartItems && cartItems.length
+                            ? cartItems.length
+                            : "0"}
+                        </span>
+                      </sup>{" "}
+                      <a className="text-dark">My Bag</a>
+                    </NavLink>
+                    <a class="dropdown-item" href="#">
+                      <i className="fas fa-user" />
+                      <sup>
+                        <span className="badge"> &nbsp; &nbsp; </span>
+                      </sup>{" "}
+                      My Profile
+                    </a>
+                    <a class="dropdown-item" href="#" onClick={handleLogout}>
+                      <i className="fas fa-sign-out-alt" />
+                      <sup>
+                        <span className="badge"> &nbsp; &nbsp; </span>
+                      </sup>{" "}
+                      Logout
+                    </a>
+                  </div>
+                </li>
+              </ul>
+            </Fragment>
           ) : (
             <Fragment>
+              Hey! &nbsp;
               <a className="text-danger" href="#">
                 <SpanModal
                   spanText="Sign In"
@@ -73,8 +128,17 @@ const UpperNav = ({ isLoggedIn, allDepartments, totalAmount }) => {
           </ul>
           <form className="form-inline my-2 my-md-0">
             <NavLink to="/mycart/" className="my-bag">
-              <img src={bag} alt="bag" /> &nbsp; Your Bag &nbsp;{" "}
-              <span className="text-danger"> $ {totalAmount}</span>
+              <i className="fas fa-shopping-cart" />
+              <sup>
+                <span className="badge badge-danger">
+                  {cartItems && cartItems.length ? cartItems.length : "0"}
+                </span>
+              </sup>{" "}
+              Your Bag &nbsp;{" "}
+              <span className="text-danger">
+                {" "}
+                $ {totalAmount ? totalAmount : "0.0"}
+              </span>
             </NavLink>
           </form>
         </div>
