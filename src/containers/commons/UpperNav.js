@@ -11,11 +11,11 @@ class UpperNav extends Component {
 
   componentWillMount() {
     const jwtToken = localStorage.getItem("jwt-token");
-    const { getDepartments, getTotalAmount, getCartUniqueId } = this.props;
+    const { getDepartments, getTotalAmount } = this.props;
     jwtToken && this.setState({ isLoggedIn: true });
     getDepartments();
     const cartId = localStorage.getItem("cartId");
-    getTotalAmount(cartId);
+    cartId && getTotalAmount(cartId);
   }
   render() {
     const { isLoggedIn } = this.state;

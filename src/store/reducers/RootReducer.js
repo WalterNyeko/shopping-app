@@ -1,9 +1,10 @@
 import { combineReducers } from "redux";
 import customersReducer from "../reducers/Customers";
 import productsReducer from "./Products";
-import categoriesReducer from './Categories';
-import departmentsReducer from './Departments';
-import ordersReducer from './Orders';
+import categoriesReducer from "./Categories";
+import departmentsReducer from "./Departments";
+import ordersReducer from "./Orders";
+import attributesReducer from "./Attributes";
 
 export default combineReducers({
   customers: customersReducer,
@@ -11,4 +12,5 @@ export default combineReducers({
   categories: categoriesReducer,
   departments: departmentsReducer,
   itemsInCart: ordersReducer,
+  attributes: attributesReducer
 });

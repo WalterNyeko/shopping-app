@@ -45,3 +45,29 @@ body {
 .mycontent {
   min-height: 70vh !important;
 }
+
+.my-footer {
+  bottom: 0;
+  position: relative;
+  width: 100%;
+}
+
+.ant-modal-wrap,
+.ant-notification {
+  z-index: 9999 !important;
+}
+
+.product-body {
+  margin-top: 120px;
+}
+
+.color-collection .color-circle {
+  width: 10px;
+  height: 10px;
+  background-color: #ff3d3d;
+}
+
+.btn-circle {
+  width: 10px !important;
+  height: 10px !important;
+}
