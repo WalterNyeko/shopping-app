@@ -1,31 +1,19 @@
 import React from "react";
 import CssBaseline from "@material-ui/core/CssBaseline";
-import Grid from "@material-ui/core/Grid";
 import Container from "@material-ui/core/Container";
 import { useStyles } from "../../styles/Products";
 import LinearProgress from "@material-ui/core/LinearProgress";
-import EachProduct from "../../containers/products/EachProduct";
 
-const Products = ({ products }) => {
+const ProductDetails = ({ product }) => {
   const classes = useStyles();
 
   return (
     <React.Fragment>
       <CssBaseline />
       <main>
-        <Container className={classes.cardGrid}>
-          <Grid container spacing={3}>
-            <EachProduct
-              products={products}
-              modalTitle="Test"
-              modalContent=""
-              modalWidth="600px"
-              visible
-            />
-          </Grid>
-        </Container>
+        <Container className={classes.cardGrid} />
       </main>
-      {products && products.rows ? (
+      {product ? (
         ""
       ) : (
         <LinearProgress
@@ -38,4 +26,4 @@ const Products = ({ products }) => {
     </React.Fragment>
   );
 };
-export default Products;
+export default ProductDetails;

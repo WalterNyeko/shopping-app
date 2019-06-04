@@ -1,4 +1,4 @@
-import { SIGNUP_USER, LOGIN_USER, GENERATE_CART_ID } from "../types";
+import { SIGNUP_USER, LOGIN_USER } from "../types";
 import history from "../../helpers/history";
 import addToLocalStorage from "../../helpers/index";
 import {
@@ -20,7 +20,8 @@ export const signupUser = userData => dispatch => {
       if (usersPayload.accessToken) {
         addToLocalStorage("jwt-token", usersPayload.accessToken);
         showSuccessNotification("User Successfully Registered");
-        history.push("/");
+        dispatch(generateUniqueCartId());
+        history.push("/home");
       } else {
         const { message } = usersPayload.error;
         showErrorNotification(message);
@@ -46,7 +47,7 @@ export const signIn = userData => dispatch => {
         addToLocalStorage("jwt-token", usersPayload.accessToken);
         showSuccessNotification("You Have Successfully Logged In");
         dispatch(generateUniqueCartId());
-        history.push("/");
+        history.push("/home");
       } else {
         const { message } = usersPayload.error;
         showErrorNotification(message);

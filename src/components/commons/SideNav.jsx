@@ -1,6 +1,5 @@
 import React, { Fragment } from "react";
 import { NavLink } from "react-router-dom";
-import Footer from "../../components/commons/Footer";
 import "../../styles/SideNav.css";
 
 const SideNav = props => {

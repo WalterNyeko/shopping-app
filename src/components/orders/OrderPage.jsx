@@ -1,12 +1,14 @@
 import React, { Fragment } from "react";
 
-const OrderPage = ({ cartItems, totalAmount }) => {
+const OrderPage = ({ cartItems, totalAmount, handleClick }) => {
   return (
     <Fragment>
       <section className="container content">
         <div className="row mt-5 mb-5">
           <div className="col-md-2 col-sm-12">
-            <button className="btn btn-danger btn-block">EMPTY CART</button>
+            <button className="btn btn-danger btn-block" onClick={handleClick}>
+              EMPTY CART
+            </button>
           </div>
           <div className="col-md-8 col-sm-12 text-center">
             <h4 className="text-danger pt-3">

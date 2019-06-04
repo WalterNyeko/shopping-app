@@ -4,15 +4,35 @@ import UpperNav from "../commons/UpperNav";
 import Footer from "../commons/Footer";
 import { connect } from "react-redux";
 import { getDepartments } from "../../store/actions/Departments";
-import { getItemsInCart, getTotalAmount } from "../../store/actions/Orders";
+import {
+  getItemsInCart,
+  getTotalAmount,
+  emptyShoppingCart,
+  deleteItemFromShoppingCart
+} from "../../store/actions/Orders";
 
 class OrderPage extends Component {
   componentWillMount = () => {
-    const { getItemsInCart, getDepartments, getTotalAmount } = this.props;
+    const {
+      getItemsInCart,
+      getDepartments,
+      getTotalAmount,
+      deleteItemFromShoppingCart
+    } = this.props;
     getDepartments();
     const cartId = localStorage.getItem("cartId");
-    getItemsInCart(cartId);
-    getTotalAmount(cartId);
+    cartId && getItemsInCart(cartId);
+    cartId && getTotalAmount(cartId);
+  };
+  handleDeleteItemFromShoppingCart = () => {
+    const cartId = localStorage.getItem("cartId");
+    // cartId&& deleteItemFromShoppingCart(cartId, productId)
+  };
+
+  handleEmptyShoppingCart = () => {
+    const { emptyShoppingCart } = this.props;
+    const cartId = localStorage.getItem("cartId");
+    emptyShoppingCart(cartId);
   };
   render() {
     const { departments } = this.props.allDepartments;
@@ -24,7 +44,11 @@ class OrderPage extends Component {
     return (
       <Fragment>
         <UpperNav />
-        <OrderPageComponent cartItems={cartItems} totalAmount={total_amount} />
+        <OrderPageComponent
+          cartItems={cartItems}
+          totalAmount={total_amount}
+          handleClick={this.handleEmptyShoppingCart}
+        />
         <Footer departments={departments} />
       </Fragment>
     );
@@ -36,5 +60,11 @@ const mapStateToProps = state => ({
 });
 export default connect(
   mapStateToProps,
-  { getDepartments, getItemsInCart, getTotalAmount }
+  {
+    getDepartments,
+    getItemsInCart,
+    getTotalAmount,
+    emptyShoppingCart,
+    deleteItemFromShoppingCart
+  }
 )(OrderPage);

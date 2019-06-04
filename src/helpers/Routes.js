@@ -1,10 +1,11 @@
 const Routes = {
-    landingPage: "/",
-    departmentProducts: "/department/:departmentId",
-    categoryProducts: "/category/:categoryId",
-    productDetails: "/products/:productId",
-    orderPage: "/mycart",
-
-}
+  landingPage: "/",
+  homePage: "/home",
+  departmentProducts: "/department/:departmentId",
+  categoryProducts: "/category/:categoryId",
+  productDetails: "/products/:productId",
+  orderPage: "/mycart",
+  productDetailsPage: "/product/:productId"
+};
 
 export default Routes;

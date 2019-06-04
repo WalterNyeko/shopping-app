@@ -1,69 +1,51 @@
-import React, { Component, Fragment } from 'react';
-import EachProductComponent from '../../components/products/EachProduct';
+import React, { Component, Fragment } from "react";
+import EachProductComponent from "../../components/products/EachProduct";
 import Pagination from "material-ui-flat-pagination";
 
 class EachProduct extends Component {
-    state = {
-        visible: false,
-        confirmLoading: false,
-        offset: 0
-    }
+  constructor(props) {
+    super(props);
+    this.state = { visible: false };
+    this.onClose = this.onClose.bind(this);
+    this.showDrawer = this.showDrawer.bind(this);
+  }
 
-    showModal = () => {
-        this.setState({
-            visible: true,
-        });
-    }
+  showDrawer = () => {
+    this.setState({
+      visible: true
+    });
+  };
 
-    handleOk = () => {
-        this.setState({
-            visible: false,
-        });
-        console.log('ticked')
-    }
+  onClose = () => {
+    this.setState({
+      visible: false
+    });
+  };
 
-    handleClick = (offset) => {
-        this.setState({ offset });
-      }
-
-    handleCancel = () => {
-        this.setState({
-            visible: false,
-        });
-    }
-    render() {
-        const {
-            products,
-            modalTitle, 
-            modalContent, 
-            modalWidth,
-        } = this.props;
-        return (
-            <Fragment>
-                <div className="w-100 text-center mb-3">
-                <div className="col-md-12 mx-auto">
-                    <Pagination
-                        limit={20}
-                        offset={this.state.offset}
-                        total={products && products.count? products.count: 1}
-                        onClick={(e, offset) => this.handleClick(offset)}
-                    />
-                </div>
-                </div>
-                <div className="row">
-                <EachProductComponent
-                    products={products}
-                    modalTitle={modalTitle} 
-                    modalContent={modalContent} 
-                    modalWidth={modalWidth}
-                    handleOk={this.handleOk}
-                    handleCancel={this.handleCancel}
-                    showModal={this.showModal}
-                    visible={this.state.visible}
-                />
-                </div>
-            </Fragment>
-        )
-    }
+  render() {
+    const { products } = this.props;
+    return (
+      <Fragment>
+        <div className="w-100 text-center mb-3">
+          <div className="col-md-12 mx-auto">
+            <Pagination
+              limit={20}
+              offset={this.state.offset}
+              total={products && products.count ? products.count : 1}
+              onClick={(e, offset) => this.handleClick(offset)}
+            />
+          </div>
+        </div>
+        <div className="row">
+          <EachProductComponent
+            products={products}
+            handleClose={this.onClose}
+            handleShow={this.showDrawer}
+            show={this.state.visible}
+          />
+        </div>
+      </Fragment>
+    );
+  }
 }
 export default EachProduct;

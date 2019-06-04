@@ -1,7 +1,4 @@
 import React, { Fragment } from "react";
-import AppBar from "@material-ui/core/AppBar";
-import Toolbar from "@material-ui/core/Toolbar";
-import Typography from "@material-ui/core/Typography";
 import { NavLink } from "react-router-dom";
 import bag from "../../images/shopping-bag.png";
 import SearchIcon from "@material-ui/icons/Search";
@@ -18,26 +15,32 @@ const UpperNav = ({ isLoggedIn, allDepartments, totalAmount }) => {
     <Fragment>
       <nav className="navbar navbar-expand-md sticky-top navbar-light bg-light pt-0 pb-0 fir">
         <div className="navbar-brand">
-          Hey!{" "}
-          <a className="text-danger" href="#">
-            <SpanModal
-              spanText="Sign In"
-              modalTitle="Login To Your ShopMate Account"
-              modalWidth="450px"
-              modalContent={<LoginPage />}
-              className={classes.navItems}
-            />
-          </a>{" "}
-          or{" "}
-          <a href="#" className="text-danger">
-            <SpanModal
-              spanText="Register"
-              modalTitle="Register For A ShopMate"
-              modalWidth="450px"
-              modalContent={<SignUpPage />}
-              className={classes.navItems}
-            />
-          </a>
+          Hi!{" "}
+          {isLoggedIn ? (
+            <Fragment>User</Fragment>
+          ) : (
+            <Fragment>
+              <a className="text-danger" href="#">
+                <SpanModal
+                  spanText="Sign In"
+                  modalTitle="Login To Your ShopMate Account"
+                  modalWidth="450px"
+                  modalContent={<LoginPage />}
+                  className={classes.navItems}
+                />
+              </a>
+              &nbsp;&nbsp;Or&nbsp;&nbsp;
+              <a href="#" className="text-danger">
+                <SpanModal
+                  spanText="Register"
+                  modalTitle="Register For A ShopMate"
+                  modalWidth="450px"
+                  modalContent={<SignUpPage />}
+                  className={classes.navItems}
+                />
+              </a>
+            </Fragment>
+          )}
         </div>
         <button
           className="navbar-toggler"
