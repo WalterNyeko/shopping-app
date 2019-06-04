@@ -1,7 +1,6 @@
 import {
   FETCH_CART_ITEMS,
   FETCH_TOTAL_AMOUNT,
-  EMPTY_SHOPPING_CART
 } from "../types";
 import { fetchData } from "../config";
 import { baseUrl } from "../config";
@@ -16,7 +15,6 @@ export const getItemsInCart = id => {
 };
 
 export const getTotalAmount = id => {
-  console.log(id);
   return fetchData(`/shoppingcart/totalAmount/${id}`, FETCH_TOTAL_AMOUNT);
 };
 
@@ -40,7 +38,6 @@ export const emptyShoppingCart = cartId => dispatch => {
   })
     .then(resp => resp.json())
     .then(data => {
-      console.log(data);
       if (data.length) {
         showErrorNotification(
           "There was an error while emptying shopping cart"

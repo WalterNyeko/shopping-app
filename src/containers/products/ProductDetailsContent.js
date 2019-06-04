@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import ProductDetailsContentComponent from "../../components/products/ProductDetailsContent";
 import { getProductAttributes } from "../../store/actions/Attributes";
 import { addToShoppingCart } from "../../store/actions/Orders";
+import { leaveReview } from "../../store/actions/Products";
 
 class ProductDetailsContent extends Component {
   constructor(props) {
@@ -11,6 +12,7 @@ class ProductDetailsContent extends Component {
       rating: 0,
       color: "",
       size: "",
+      review: "",
       openColor: false,
       openSize: false
     };
@@ -21,6 +23,7 @@ class ProductDetailsContent extends Component {
     this.handleOpenSize = this.handleOpenSize.bind(this);
     this.handleOpenColor = this.handleOpenColor.bind(this);
     this.handleChange = this.handleChange.bind(this);
+    this.handleAddReviews = this.handleAddReviews.bind(this);
   }
 
   componentWillMount = () => {
@@ -50,7 +53,6 @@ class ProductDetailsContent extends Component {
     event.preventDefault();
     const { name, value } = event.target;
     this.setState({ [name]: value });
-    console.log(this.state);
   };
 
   handleCloseColor = () => {
@@ -93,6 +95,18 @@ class ProductDetailsContent extends Component {
     addToShoppingCart(data);
   };
 
+  handleAddReviews = () => {
+    const { leaveReview, productId } = this.props;
+    const name = localStorage.getItem("user");
+    const { rating, review } = this.state;
+    const data = {
+      name,
+      review,
+      rating
+    };
+    leaveReview(productId, data);
+  };
+
   changeRating = (newRating, name) => {
     this.setState({
       rating: newRating
@@ -130,6 +144,8 @@ class ProductDetailsContent extends Component {
           handleOpenColor={this.handleOpenColor}
           handleOpenSize={this.handleOpenSize}
           handleChange={this.handleChange}
+          handleAddReviews={this.handleAddReviews}
+          review={this.state.review}
         />
       </Fragment>
     );
@@ -140,5 +156,5 @@ const mapStateToProps = state => ({
 });
 export default connect(
   mapStateToProps,
-  { getProductAttributes, addToShoppingCart }
+  { getProductAttributes, addToShoppingCart, leaveReview }
 )(ProductDetailsContent);

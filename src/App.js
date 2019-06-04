@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from "react";
 import { Provider } from "react-redux";
 import { Router } from "react-router";
-import { BrowserRouter, Route, Switch } from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
 import Routes from "./helpers/Routes";
 import LandingPage from "./containers/home/LandingPage";
 import PerDepartmentPage from "./containers/home/PerDepartmentPage";

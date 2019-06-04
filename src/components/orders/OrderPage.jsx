@@ -12,7 +12,7 @@ const OrderPage = ({ cartItems, totalAmount, handleClick }) => {
           </div>
           <div className="col-md-8 col-sm-12 text-center">
             <h4 className="text-danger pt-3">
-              <strong>Total: $ {totalAmount}</strong>
+              <strong>Total: $ {totalAmount ? totalAmount : "0.0"}</strong>
             </h4>
           </div>
           <div className="col-md-2 col-sm-12">

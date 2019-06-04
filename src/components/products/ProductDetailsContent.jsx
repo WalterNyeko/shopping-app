@@ -25,7 +25,9 @@ const ProductDetailsContent = ({
   color,
   size,
   colorsData,
-  sizesData
+  sizesData,
+  handleAddReviews,
+  review
 }) => {
   const useStyles = makeStyles(theme => ({
     root: {
@@ -77,6 +79,7 @@ const ProductDetailsContent = ({
                   }}
                 >
                   {colorsData &&
+                    colorsData.length &&
                     colorsData.map(
                       ({ attribute_value_id, attribute_value }) => (
                         <MenuItem
@@ -106,6 +109,7 @@ const ProductDetailsContent = ({
                   }}
                 >
                   {sizesData &&
+                    sizesData.length &&
                     sizesData.map(({ attribute_value_id, attribute_value }) => (
                       <MenuItem
                         value={attribute_value}
@@ -128,7 +132,14 @@ const ProductDetailsContent = ({
           <div class="row mb-4">
             <div class="col-md-8 mx-auto">
               <form className="mb-2">
-                <textarea type="text" class="form-control" />
+                <textarea
+                  type="text"
+                  class="form-control"
+                  name="review"
+                  onChange={handleChange}
+                >
+                  {review}
+                </textarea>
               </form>
               <div className="text-center">
                 <div className="m-2">
@@ -141,7 +152,10 @@ const ProductDetailsContent = ({
                   />
                 </div>
                 <br />
-                <button className="btn btn-danger text-center">
+                <button
+                  className="btn btn-danger text-center"
+                  onClick={handleAddReviews}
+                >
                   Leave a Review
                 </button>
               </div>
