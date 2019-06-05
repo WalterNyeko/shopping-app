@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import LoginPageComponent from "../../components/customers/LoginPage";
 import { signIn } from "../../store/actions/Customers";
 
-class LoginPage extends Component {
+export class LoginPage extends Component {
   state = {
     email: "",
     password: ""
@@ -12,7 +12,7 @@ class LoginPage extends Component {
   /**
    * ensures the most recent value for each jsx input element is stored in the state
    * sets the state value of the input basing on its name attribute
-   * 
+   *
    * @param {Object} event
    *
    * @returns {void}
@@ -24,7 +24,7 @@ class LoginPage extends Component {
 
   /**
    * signs in a user into the app upon successful request
-   * 
+   *
    * @param {Object} event
    *
    * @returns {void}
