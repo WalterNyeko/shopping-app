@@ -52,7 +52,7 @@ const UpperNav = ({
                             : "0"}
                         </span>
                       </sup>{" "}
-                      <a className="text-dark">My Bag</a>
+                      My Bag
                     </NavLink>
                     <a class="dropdown-item" href="#">
                       <i className="fas fa-user" />
@@ -144,11 +144,9 @@ const UpperNav = ({
         </div>
       </nav>
       <nav className="navbar navbar-expand-md fixed-top navbar-dark bg-dark nav-margin">
-        <a className="navbar-brand logo" href="#">
-          <NavLink to="/" className={classes.shopmateLogo}>
-            SHOPMATE
-          </NavLink>
-        </a>
+        <NavLink to="/" className={classes.shopmateLogo}>
+          SHOPMATE
+        </NavLink>
         <button
           className="navbar-toggler"
           type="button"

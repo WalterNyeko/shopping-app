@@ -8,10 +8,12 @@ const Footer = ({ departments }) => {
         {departments &&
           departments.length &&
           departments.map(({ name, department_id }) => (
-            <NavLink to={`/department/${department_id}`} key={department_id}>
-              <a className="text-white mr-5" href="#">
-                {name}
-              </a>
+            <NavLink
+              to={`/department/${department_id}`}
+              key={department_id}
+              className="text-white mr-5"
+            >
+              {name}
             </NavLink>
           ))}
       </div>

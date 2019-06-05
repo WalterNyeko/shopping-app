@@ -10,7 +10,7 @@ import "../../styles/Products.css";
 import { Drawer, Button } from "antd";
 import { NavLink } from "react-router-dom";
 
-const EachProduct = ({ products, handleShow, handleClose, show }) => {
+const EachProduct = ({ products }) => {
   const classes = useStyles();
 
   return (
@@ -27,14 +27,7 @@ const EachProduct = ({ products, handleShow, handleClose, show }) => {
                 discounted_price
               }) => (
                 <Fragment key={product_id}>
-                  <Grid
-                    item
-                    key={product_id}
-                    xs={6}
-                    sm={3}
-                    md={3}
-                    onClick={handleShow}
-                  >
+                  <Grid item key={product_id} xs={6} sm={3} md={3}>
                     <NavLink to={`/product/${product_id}`}>
                       <Card className={classes.card}>
                         <Typography
