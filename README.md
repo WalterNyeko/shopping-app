@@ -1,4 +1,4 @@
-[![CircleCI](https://circleci.com/gh/WalterNyeko/shopping-app/tree/develop.svg?style=svg)](https://circleci.com/gh/WalterNyeko/shopping-app/tree/develop)
+[![CircleCI](https://circleci.com/gh/WalterNyeko/shopping-app.svg?style=svg&circle-token=108f5801d7f75c811b009369a2b00df1e5ebbbd4)](https://circleci.com/gh/WalterNyeko/shopping-app)
 
 ## Getting Started
 
