@@ -89,12 +89,7 @@ export const leaveReview = (productId, data) => dispatch => {
   })
     .then(resp => resp.json())
     .then(responseData => {
-      if (responseData.accessToken) {
-        showSuccessNotification("You Have Successfully Logged In");
-        history.push("/home");
-      } else {
-        const { message } = responseData.error;
-        showErrorNotification("Very bad boy");
-      }
+      const { message } = responseData.error;
+      showErrorNotification(message);
     });
 };
