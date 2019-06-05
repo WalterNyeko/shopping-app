@@ -22,6 +22,10 @@ Launches the test runner in the interactive watch mode, and update all the snaps
 
 - `yarn test:cov`.
 
+## Application Demo
+
+You can test the application [deployed here](https://shopping-mate-app.herokuapp.com/)
+
 ## Documentation
 
 This code base uses JSDocs to document all functions used in the application.

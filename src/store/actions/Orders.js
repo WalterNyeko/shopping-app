@@ -127,7 +127,6 @@ export const deleteItemFromShoppingCart = (cartId, productId) => dispatch => {
   })
     .then(resp => resp.json())
     .then(data => {
-      console.log(data);
       dispatch(getItemsInCart(cartId));
       dispatch(getTotalAmount(cartId));
     });
@@ -153,7 +152,6 @@ export const createChargeOnCard = (cartId, data) => dispatch => {
   })
     .then(resp => resp.json())
     .then(data => {
-      console.log(data);
       dispatch(emptyShoppingCart(cartId));
       dispatch(getItemsInCart(cartId));
       dispatch(getTotalAmount(cartId));

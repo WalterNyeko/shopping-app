@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import SideNavComponent from '../../components/commons/SideNav';
 import { getCategories, getDepartmentCategories } from '../../store/actions/Categories';
 
-class SideNav extends Component {
+export class SideNav extends Component {
     componentWillMount = () => {
         if(this.props.departmentId){
             const { getDepartmentCategories, departmentId } = this.props;
