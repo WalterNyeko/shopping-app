@@ -22,7 +22,6 @@ const OrderPage = ({ cartItems, totalAmount, handleClick, handlePayment }) => {
                 token={handlePayment}
                 stripeKey="pk_test_a7BkMHivjiRVLnCVyXh3SkzO00UdQn0SYm"
                 amount={totalAmount * 100} // cents
-                email="nyekowalter69@gmail.com"
                 label="PLACE ORDER"
                 billingAddress
                 shippingAddress
