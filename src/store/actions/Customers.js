@@ -8,6 +8,15 @@ import {
 import { generateUniqueCartId } from "./Orders";
 import jwtDecode from "jwt-decode";
 
+
+/**
+ * ensures that a user can be able to register an account
+ * with the application
+ *
+ * @param {String} userData
+ *
+ * @returns {Object}
+ */
 export const signupUser = userData => dispatch => {
   fetch("https://backendapi.turing.com/customers", {
     method: "POST",
@@ -24,7 +33,12 @@ export const signupUser = userData => dispatch => {
         addToLocalStorage("jwt-token", usersPayload.accessToken);
         showSuccessNotification("User Successfully Registered");
         dispatch(generateUniqueCartId());
-        history.push("/home");
+        const { pathname } = history.location;
+        if (pathname === "/home" || pathname === "/home#") {
+          history.push("/");
+        } else {
+          history.push("/home");
+        }
       } else {
         const { message } = usersPayload.error;
         showErrorNotification(message);
@@ -36,6 +50,14 @@ export const signupUser = userData => dispatch => {
     });
 };
 
+/**
+ * ensures that a user can be able to log into his account
+ * to access the application
+ *
+ * @param {String} userData
+ *
+ * @returns {Object}
+ */
 export const signIn = userData => dispatch => {
   fetch("https://backendapi.turing.com/customers/login", {
     method: "POST",

@@ -1,6 +1,13 @@
 import React, { Fragment } from "react";
+import StripeCheckout from "react-stripe-checkout";
 
-const OrderPage = ({ cartItems, totalAmount, handleClick }) => {
+const OrderPage = ({
+  cartItems,
+  totalAmount,
+  handleClick,
+  handlePayment,
+  amount
+}) => {
   return (
     <Fragment>
       <section className="container content">
@@ -16,7 +23,19 @@ const OrderPage = ({ cartItems, totalAmount, handleClick }) => {
             </h4>
           </div>
           <div className="col-md-2 col-sm-12">
-            <button className="btn btn-danger btn-block">PLACE ORDER</button>
+            {totalAmount > 0 ? (
+              <StripeCheckout
+                token={handlePayment}
+                stripeKey="pk_test_a7BkMHivjiRVLnCVyXh3SkzO00UdQn0SYm"
+                amount={amount} // cents
+                email="nyekowalter69@gmail.com"
+                label="PLACE ORDER"
+                billingAddress
+                shippingAddress
+              />
+            ) : (
+              ""
+            )}
           </div>
         </div>
         <div className="table-responsive">

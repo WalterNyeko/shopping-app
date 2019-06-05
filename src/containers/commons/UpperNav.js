@@ -9,15 +9,19 @@ import {
 } from "../../store/actions/Orders";
 import history from "../../helpers/history";
 
-class UpperNav extends Component {
+export class UpperNav extends Component {
   state = {
     isLoggedIn: false
   };
 
-  componentWillMount() {
-    return this.retrieveItems(this.props);
-  }
-
+  /**
+   * 1. retrieves departments, total amount and items in shopping cart
+   * 2. sets the state value of isLoggedIn to false
+   *
+   * @param {Object} props
+   *
+   * @returns {void}
+   */
   retrieveItems = props => {
     const jwtToken = localStorage.getItem("jwt-token");
     const { getDepartments, getTotalAmount, getItemsInCart } = props;
@@ -28,6 +32,10 @@ class UpperNav extends Component {
     getItemsInCart(cartId);
   };
 
+  componentWillMount() {
+    return this.retrieveItems(this.props);
+  }
+
   componentWillReceiveProps(nextProps) {
     if (
       nextProps.myCart.totalAmountOfItemsInCart.total_amount !==
@@ -37,13 +45,29 @@ class UpperNav extends Component {
     }
   }
 
+  /**
+   * logs out a user from the app by doing the following
+   * 1. clears the users token from localStorage
+   * 2. clears the users name from loaclStorage
+   * 3. redirects user to the landing page
+   *
+   * @returns {void}
+   */
   handleLogout = () => {
     localStorage.removeItem("jwt-token");
     localStorage.removeItem("user");
     const cartId = localStorage.getItem("cartId");
-    const { emptyShoppingCart } = this.props;
-    emptyShoppingCart(cartId);
-    history.push("/");
+    const {
+      emptyShoppingCart,
+      myCart: { cartItems }
+    } = this.props;
+    cartItems && cartItems.length && emptyShoppingCart(cartId);
+    const { pathname } = history.location;
+    if (pathname === "/") {
+      history.push("/home");
+    } else {
+      history.push("/");
+    }
   };
   render() {
     const { isLoggedIn } = this.state;

@@ -49,36 +49,73 @@ class ProductDetailsContent extends Component {
     }
   }
 
+  /**
+   * ensures the most recent value for each jsx input element is stored in the state
+   * sets the state value of the input basing on its name attribute
+   *
+   * @param {Object} event
+   *
+   * @returns {void}
+   */
   handleChange = event => {
     event.preventDefault();
     const { name, value } = event.target;
     this.setState({ [name]: value });
   };
 
+  /**
+   * ensures that the dropdown for selecting color
+   * closes upon dropdown item selection, or outside click
+   *
+   * @returns {void}
+   */
   handleCloseColor = () => {
     this.setState({
       openColor: false
     });
   };
 
+  /**
+   * ensures that the dropdown for selecting size
+   * closes upon dropdown item selection, or outside click
+   *
+   * @returns {void}
+   */
   handleCloseSize = () => {
     this.setState({
       openSize: false
     });
   };
 
+  /**
+   * ensures that the dropdown for selecting color
+   * opens upon dropdown selection
+   *
+   * @returns {void}
+   */
   handleOpenColor = () => {
     this.setState({
       openColor: true
     });
   };
 
+  /**
+   * ensures that the dropdown for selecting size
+   * opens upon dropdown selection
+   *
+   * @returns {void}
+   */
   handleOpenSize = () => {
     this.setState({
       openSize: true
     });
   };
 
+  /**
+   * ensures that a user can add an item to the shopping cart
+   *
+   * @returns {void}
+   */
   handleSubmit = () => {
     const { color, size } = this.state;
     const attributes = `${color}: ${size}`;
@@ -95,6 +132,11 @@ class ProductDetailsContent extends Component {
     addToShoppingCart(data);
   };
 
+  /**
+   * ensures that a user can leave a review for a product
+   *
+   * @returns {void}
+   */
   handleAddReviews = () => {
     const { leaveReview, productId } = this.props;
     const name = localStorage.getItem("user");
@@ -107,6 +149,15 @@ class ProductDetailsContent extends Component {
     leaveReview(productId, data);
   };
 
+  /**
+   * ensures that the state value for rating changes accordingly,
+   * this function is responsible for handling state change for the rating component
+   *
+   * @param {Integer} newRating
+   * @param {String} name
+   *
+   * @returns {void}
+   */
   changeRating = (newRating, name) => {
     this.setState({
       rating: newRating

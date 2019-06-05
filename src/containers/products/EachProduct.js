@@ -6,21 +6,7 @@ class EachProduct extends Component {
   constructor(props) {
     super(props);
     this.state = { visible: false };
-    this.onClose = this.onClose.bind(this);
-    this.showDrawer = this.showDrawer.bind(this);
   }
-
-  showDrawer = () => {
-    this.setState({
-      visible: true
-    });
-  };
-
-  onClose = () => {
-    this.setState({
-      visible: false
-    });
-  };
 
   render() {
     const { products } = this.props;
@@ -37,12 +23,7 @@ class EachProduct extends Component {
           </div>
         </div>
         <div className="row">
-          <EachProductComponent
-            products={products}
-            handleClose={this.onClose}
-            handleShow={this.showDrawer}
-            show={this.state.visible}
-          />
+          <EachProductComponent products={products} />
         </div>
       </Fragment>
     );

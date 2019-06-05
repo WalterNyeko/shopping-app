@@ -10,6 +10,7 @@
     "@material-ui/icons": "^4.0.1",
     "antd": "^3.19.1",
     "bootstrap": "^4.3.1",
+    "documentation": "^11.0.0",
     "dotenv": "^8.0.0",
     "enzyme": "^3.9.0",
     "enzyme-adapter-react-16": "^1.13.2",
@@ -30,7 +31,10 @@
     "react-scripts": "3.0.1",
     "react-star-rating-component": "^1.4.1",
     "react-star-ratings": "^2.3.0",
+    "react-stripe-checkout": "^2.6.3",
+    "react-stripe-elements": "^3.0.0",
     "redux": "^4.0.1",
+    "redux-mock-store": "^1.5.3",
     "redux-thunk": "^2.3.0"
   },
   "scripts": {
@@ -38,7 +42,9 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "test:cov": "react-scripts test -u --coverage",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "docs:html": "documentation build src/** -f html -o docs",
+    "docs:md": "documentation build src/** -f md -o mdDocs"
   },
   "eslintConfig": {
     "extends": "react-app"
