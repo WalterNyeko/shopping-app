@@ -1,13 +1,7 @@
 import React, { Fragment } from "react";
 import StripeCheckout from "react-stripe-checkout";
 
-const OrderPage = ({
-  cartItems,
-  totalAmount,
-  handleClick,
-  handlePayment,
-  amount
-}) => {
+const OrderPage = ({ cartItems, totalAmount, handleClick, handlePayment }) => {
   return (
     <Fragment>
       <section className="container content">
@@ -27,7 +21,7 @@ const OrderPage = ({
               <StripeCheckout
                 token={handlePayment}
                 stripeKey="pk_test_a7BkMHivjiRVLnCVyXh3SkzO00UdQn0SYm"
-                amount={amount} // cents
+                amount={totalAmount} // cents
                 email="nyekowalter69@gmail.com"
                 label="PLACE ORDER"
                 billingAddress

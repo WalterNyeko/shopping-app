@@ -55,15 +55,15 @@ class OrderPage extends Component {
    * @returns {void}
    */
   handlePayment = token => {
-    console.log(token);
+    const cartId = localStorage.getItem("cartId");
+    const { myCart: { totalAmountOfItemsInCart: {total_amount}} } = this.props;
     const data = {
       stripeToken: token,
       oredr_id: 1,
       description: "Some test description",
-      amount: 125000
+      amount: total_amount
     };
     const { createChargeOnCard } = this.props;
-    const cartId = localStorage.getItem("cartId");
     createChargeOnCard(cartId, data);
   };
 
