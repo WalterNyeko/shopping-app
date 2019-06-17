@@ -12,8 +12,13 @@ export const baseUrl = `https://backendapi.turing.com`;
  */
 export const fetchData = (url, type) => dispatch => {
   const finalUrl = baseUrl + url;
+  const jwtToken = localStorage.getItem("jwt-token");
   fetch(finalUrl, {
-    method: "GET"
+    method: "GET",
+    headers: {
+      "content-type": "application/json",
+      "USER-KEY": jwtToken
+    }
   })
     .then(resp => resp.json())
     .then(data => {

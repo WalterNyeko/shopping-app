@@ -15,6 +15,15 @@ body {
   font-size: 18px;
 }
 
+.nav-link-item:active {
+  font-size: 28px;
+}
+
+.nav-link-item:hover {
+  font-size: 18px;
+  color: blue;
+}
+
 .nav-margin {
   margin-top: 40px !important;
 }
@@ -84,4 +93,19 @@ body {
 .sticky-top {
   z-index: 9999 !important;
   width: 100%;
+}
+
+.span-error {
+  color: red;
+}
+
+tbody tr {
+  cursor: pointer;
+}
+.card-header,
+.card-footer {
+  background-color: #fff !important;
+}
+.card {
+  border-radius: 0px;
 }

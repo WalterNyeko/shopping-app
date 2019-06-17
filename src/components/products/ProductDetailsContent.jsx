@@ -27,7 +27,8 @@ const ProductDetailsContent = ({
   colorsData,
   sizesData,
   handleAddReviews,
-  review
+  review,
+  errors
 }) => {
   const useStyles = makeStyles(theme => ({
     root: {
@@ -46,21 +47,31 @@ const ProductDetailsContent = ({
   return (
     <Fragment>
       {product && product.thumbnail && (
-        <div class="container-fluid product-body">
-          <div class="row">
-            <div class="col-md-5 col-sm-12 text-center">
+        <div className="container-fluid product-body">
+          <div className="row">
+            <div className="col-md-5 col-sm-12 text-center">
               <img
                 src={require(`../../images/${product.thumbnail}`)}
                 alt=""
                 width="180px"
               />
             </div>
-            <div class="col-md-7">
-              <h3>{product.name}</h3>
-              <h5 class="text-danger">
-                <strike>${product.price}</strike>
-              </h5>
-              <h3 class="text-danger ml-5">${product.discounted_price}</h3>
+            <div className="col-md-7">
+              {product.discounted_price > 0 ? (
+                <>
+                  <h3>{product.name}</h3>
+                  <h5 className="text-danger">
+                    <strike>${product.price}</strike>
+                  </h5>
+                  <h3 className="text-danger ml-5">${product.discounted_price}</h3>
+                </>
+              ) : (
+                <>
+                  <h3>{product.name}</h3>
+                  <h3 className="text-danger ml-5">${product.price}</h3>
+                </>
+              )}
+
               <p>{product.description}</p>
               <h5>Color</h5>
               <FormControl className={classes.formControl}>
@@ -92,6 +103,12 @@ const ProductDetailsContent = ({
                     )}
                 </Select>
               </FormControl>
+              {errors.color && (
+                <span className="span-error">
+                  <br />
+                  {errors.color}
+                </span>
+              )}
               <h5>Size</h5>
               <FormControl className={classes.formControl}>
                 <InputLabel htmlFor="demo-controlled-open-select">
@@ -120,6 +137,12 @@ const ProductDetailsContent = ({
                     ))}
                 </Select>
               </FormControl>
+              {errors.size && (
+                <span className="span-error">
+                  <br />
+                  {errors.size}
+                </span>
+              )}
               <button
                 className="btn btn-danger text-center ml-5 mt-3"
                 onClick={handleSubmit}
@@ -128,13 +151,13 @@ const ProductDetailsContent = ({
               </button>
             </div>
           </div>
-          <h3 class="text-center mt-5">Leave a Review</h3>
-          <div class="row mb-4">
-            <div class="col-md-8 mx-auto">
+          <h3 className="text-center mt-5">Leave a Review</h3>
+          <div className="row mb-4">
+            <div className="col-md-8 mx-auto">
               <form className="mb-2">
                 <textarea
                   type="text"
-                  class="form-control"
+                  className="form-control"
                   name="review"
                   onChange={handleChange}
                 >

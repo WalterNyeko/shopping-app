@@ -11,7 +11,8 @@ import history from "../../helpers/history";
 
 export class UpperNav extends Component {
   state = {
-    isLoggedIn: false
+    isLoggedIn: false,
+    query: ""
   };
 
   /**
@@ -69,6 +70,11 @@ export class UpperNav extends Component {
       history.push("/");
     }
   };
+
+  handleClickNav = id => {
+    history.push(`/department/${id}`);
+  };
+
   render() {
     const { isLoggedIn } = this.state;
     const {
@@ -76,7 +82,10 @@ export class UpperNav extends Component {
       myCart: {
         totalAmountOfItemsInCart: { total_amount },
         cartItems
-      }
+      },
+      handleInputChange,
+      handleSearch,
+      showSearchField
     } = this.props;
     return (
       <Fragment>
@@ -86,6 +95,10 @@ export class UpperNav extends Component {
           totalAmount={total_amount}
           handleLogout={this.handleLogout}
           cartItems={cartItems}
+          handleSearch={handleSearch}
+          handleInputChange={handleInputChange}
+          handleClickNav={this.handleClickNav}
+          showSearchField={showSearchField}
         />
       </Fragment>
     );
@@ -93,7 +106,8 @@ export class UpperNav extends Component {
 }
 const mapStateToProps = state => ({
   allDepartments: state.departments,
-  myCart: state.itemsInCart
+  myCart: state.itemsInCart,
+  allProducts: state.products
 });
 export default connect(
   mapStateToProps,

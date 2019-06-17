@@ -11,6 +11,8 @@ import store from "./store/store";
 import ProductDeatilsPage from "./containers/products/ProductDeatilsPage";
 import history from "./helpers/history";
 import Home from "./containers/home/Home";
+import PlaceOrder from "./containers/orders/PlaceOrder";
+import Profile from "./containers/customers/Profile";
 
 class App extends Component {
   render() {
@@ -37,6 +39,8 @@ class App extends Component {
                 exact
                 component={ProductDeatilsPage}
               />
+              <Route path={Routes.placeOrder} exact component={PlaceOrder} />
+              <Route path={Routes.myProfile} exact component={Profile} />
             </Switch>
           </Router>
         </Fragment>

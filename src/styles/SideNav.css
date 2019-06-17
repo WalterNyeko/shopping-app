@@ -9,7 +9,7 @@
   overflow-x: hidden; /* Disable horizontal scroll */
   padding-top: 20px;
   margin-top: 80px;
-  padding-left: 15px;
+  padding-left: 0px;
 }
 
 /* The navigation menu links */
@@ -26,6 +26,10 @@
   color: #818181;
 }
 
+.sidenav a:active {
+  color: black;
+}
+
 h6 {
   margin-left: 15px;
   font-size: 30px;
@@ -39,7 +43,7 @@ h6 {
   margin-top: 80px;
 }
 
-/* On smaller screens, where height is less than 450px, change the style of the sidebar (less padding and a smaller font size) */
+/* On smaller screens, where height is less than 450px */
 @media screen and (max-height: 450px) {
   .sidenav {
     padding-top: 15px;
@@ -47,4 +51,65 @@ h6 {
   .sidenav a {
     font-size: 18px;
   }
+}
+
+/* 
+CSS for Side Navs
+*/
+body {
+  overflow-x: hidden;
+}
+
+#sidebar-wrapper {
+  min-height: 100vh;
+  margin-left: -15rem;
+  -webkit-transition: margin 0.25s ease-out;
+  -moz-transition: margin 0.25s ease-out;
+  -o-transition: margin 0.25s ease-out;
+  transition: margin 0.25s ease-out;
+}
+
+#sidebar-wrapper .sidebar-heading {
+  padding: 0.875rem 1.25rem;
+  font-size: 25px;
+}
+
+#sidebar-wrapper .list-group {
+  width: 15rem;
+}
+
+#page-content-wrapper {
+  min-width: 100vw;
+}
+
+#wrapper.toggled #sidebar-wrapper {
+  margin-left: 0;
+}
+
+@media (min-width: 768px) {
+  #sidebar-wrapper {
+    margin-left: 0;
+  }
+
+  #page-content-wrapper {
+    min-width: 0;
+    width: 100%;
+  }
+
+  #wrapper.toggled #sidebar-wrapper {
+    margin-left: -15rem;
+  }
+}
+
+.sidenav-mt {
+  padding-top: 80px;
+}
+
+.list-group-item {
+  font-size: 18px;
+  border: none !important;
+}
+
+.bg-light {
+  background-color: #f1f1f1 !important;
 }

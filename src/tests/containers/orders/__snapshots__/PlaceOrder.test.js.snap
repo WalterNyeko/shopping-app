@@ -1,0 +1,5 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`PlaceOrder should render correctly 1`] = `ShallowWrapper {}`;
+
+exports[`PlaceOrder should render the component well 1`] = `ShallowWrapper {}`;

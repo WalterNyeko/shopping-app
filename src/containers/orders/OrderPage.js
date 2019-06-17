@@ -9,17 +9,13 @@ import {
   getTotalAmount,
   emptyShoppingCart,
   deleteItemFromShoppingCart,
-  createChargeOnCard
+  createChargeOnCard,
+  editItemFromShoppingCart
 } from "../../store/actions/Orders";
 
-class OrderPage extends Component {
+export class OrderPage extends Component {
   componentWillMount = () => {
-    const {
-      getItemsInCart,
-      getDepartments,
-      getTotalAmount,
-      deleteItemFromShoppingCart
-    } = this.props;
+    const { getItemsInCart, getDepartments, getTotalAmount } = this.props;
     getDepartments();
     const cartId = localStorage.getItem("cartId");
     cartId && getItemsInCart(cartId);
@@ -31,9 +27,50 @@ class OrderPage extends Component {
    *
    * @returns {void}
    */
-  handleDeleteItemFromShoppingCart = () => {
+  handleClickRemoveItem = itemId => {
     const cartId = localStorage.getItem("cartId");
-    // cartId&& deleteItemFromShoppingCart(cartId, productId)
+    const { deleteItemFromShoppingCart } = this.props;
+    deleteItemFromShoppingCart(cartId, itemId);
+  };
+
+  /**
+   * ensures that a user can increase quantity an item from the cart
+   *
+   * @returns {void}
+   */
+  handleClickIncreaseItemQuantity = itemId => {
+    const cartId = localStorage.getItem("cartId");
+    const { editItemFromShoppingCart } = this.props;
+    const theSelectedObject = this.props.myCart.cartItems.filter(
+      item => item.item_id === itemId
+    );
+    let { quantity } = theSelectedObject[0];
+    quantity++;
+    const data = {
+      item_id: itemId,
+      quantity
+    };
+    editItemFromShoppingCart(cartId, data);
+  };
+
+  /**
+   * ensures that a user can decrease quantity an item from the cart
+   *
+   * @returns {void}
+   */
+  handleClickDecreaseItemQuantity = itemId => {
+    const cartId = localStorage.getItem("cartId");
+    const { editItemFromShoppingCart } = this.props;
+    const theSelectedObject = this.props.myCart.cartItems.filter(
+      item => item.item_id === itemId
+    );
+    let { quantity } = theSelectedObject[0];
+    quantity--;
+    const data = {
+      item_id: itemId,
+      quantity
+    };
+    editItemFromShoppingCart(cartId, data);
   };
 
   /**
@@ -45,26 +82,6 @@ class OrderPage extends Component {
     const { emptyShoppingCart } = this.props;
     const cartId = localStorage.getItem("cartId");
     emptyShoppingCart(cartId);
-  };
-
-  /**
-   * ensures the user's card is charged whenever they place an order
-   *
-   * @param {Object} token
-   *
-   * @returns {void}
-   */
-  handlePayment = token => {
-    const cartId = localStorage.getItem("cartId");
-    const { myCart: { totalAmountOfItemsInCart: {total_amount}} } = this.props;
-    const data = {
-      stripeToken: token,
-      oredr_id: 1,
-      description: "Some test description",
-      amount: total_amount
-    };
-    const { createChargeOnCard } = this.props;
-    createChargeOnCard(cartId, data);
   };
 
   render() {
@@ -82,6 +99,9 @@ class OrderPage extends Component {
           totalAmount={total_amount}
           handleClick={this.handleEmptyShoppingCart}
           handlePayment={this.handlePayment}
+          handleClickRemoveItem={this.handleClickRemoveItem}
+          handleClickIncreaseItemQuantity={this.handleClickIncreaseItemQuantity}
+          handleClickDecreaseItemQuantity={this.handleClickDecreaseItemQuantity}
         />
         <Footer departments={departments} />
       </Fragment>
@@ -100,6 +120,7 @@ export default connect(
     getTotalAmount,
     emptyShoppingCart,
     deleteItemFromShoppingCart,
-    createChargeOnCard
+    createChargeOnCard,
+    editItemFromShoppingCart
   }
 )(OrderPage);

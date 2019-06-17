@@ -1,19 +1,9 @@
 import React from "react";
 import { UpperNav } from "../../../containers/commons/UpperNav";
-import { mount } from "enzyme";
-import { Provider } from "react-redux";
+import { mount, shallow } from "enzyme";
 import { Router } from "react-router";
-import configureStore from "redux-mock-store";
-import thunk from "redux-thunk";
 import history from "../../../helpers/history";
 
-const initialState = {
-  allDepartments: { departments: [{ department_id: 1, name: "Test" }] },
-  myCart: {
-    totalAmountOfItemsInCart: { total_amount: 10.0 },
-    cartItems: [{}]
-  }
-};
 const props = {
   getDepartments: jest.fn(),
   getItemsInCart: jest.fn(),
@@ -31,8 +21,6 @@ const props = {
     ]
   }
 };
-const mockStore = configureStore([thunk]);
-const store = mockStore(initialState);
 describe("UpperNav", () => {
   const wrapper = mount(
     <Router history={history}>
@@ -41,5 +29,38 @@ describe("UpperNav", () => {
   );
   it("should render side navigation without crashing", () => {
     expect(wrapper).toMatchSnapshot();
+  });
+
+  it("should logout user when handleLogout() is called", () => {
+    const props = {
+      getDepartments: jest.fn(),
+      getItemsInCart: jest.fn(),
+      allDepartments: [],
+      myCart: {
+        totalAmountOfItemsInCart: { total_amount: 10 },
+        cartItems: []
+      },
+      handleInputChange: jest.fn(),
+      handleSearch: jest.fn(),
+      history
+    }
+    const nextProps = {
+      getDepartments: jest.fn(),
+      getItemsInCart: jest.fn(),
+      allDepartments: [],
+      myCart: {
+        totalAmountOfItemsInCart: { total_amount: 1 },
+        cartItems: []
+      },
+      handleInputChange: jest.fn(),
+      handleSearch: jest.fn(),
+      history
+    }
+    const shallowWrapper = shallow(<UpperNav {...props}/>);
+    const spy = jest.spyOn(shallowWrapper.instance(), 'handleLogout');
+    shallowWrapper.instance().handleLogout();
+    shallowWrapper.instance().handleClickNav();
+    shallowWrapper.instance().componentWillReceiveProps(nextProps);
+    expect(spy).toHaveBeenCalled();
   });
 });

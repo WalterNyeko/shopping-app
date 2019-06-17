@@ -5,7 +5,9 @@ const Routes = {
   categoryProducts: "/category/:categoryId",
   productDetails: "/products/:productId",
   orderPage: "/mycart",
-  productDetailsPage: "/product/:productId"
+  productDetailsPage: "/product/:productId",
+  placeOrder: "/orders",
+  myProfile: "/myprofile"
 };
 
 export default Routes;

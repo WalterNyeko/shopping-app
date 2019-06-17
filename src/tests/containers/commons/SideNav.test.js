@@ -1,12 +1,13 @@
 import React from "react";
 import { SideNav } from "../../../containers/commons/SideNav";
-import { mount } from "enzyme";
+import { mount, shallow } from "enzyme";
 import { Provider } from "react-redux";
 import configureStore from "redux-mock-store";
 import thunk from "redux-thunk";
 import { Router } from "react-router";
 import history from "../../../helpers/history";
 import { NavLink } from "react-router";
+import SideNavComponent from '../../../components/commons/SideNav';
 
 const initialState = {
   categories: []
@@ -48,8 +49,42 @@ describe("SideNav", () => {
 
   it("should render the right data when the side nav renders", () => {
     expect(wrapper.find("h6").text()).toContain("Categories");
-    expect(wrapper.find("NavLink")).toHaveLength(2); // 2 categories
-    expect(wrapper.find("NavLink").at(0).text()).toContain("French");
-    expect(wrapper.find("NavLink").at(1).text()).toContain("Italian");
+  });
+
+  it("should call handleClickSideNav() when a department is clicked", () => {
+    const myprops = {
+      allCategories: {
+        categories: { 
+        rows: [] }},
+      getCategories: jest.fn(),
+      departmentId: 1,
+      allCategories: { categoriesPerDepartment: [] },
+      getDepartmentCategories: jest.fn(),
+    }
+
+    const nextProps = {
+      allCategories: {
+        categories: { 
+        rows: [] }},
+      getCategories: jest.fn(),
+      departmentId: 2,
+      allCategories: { categoriesPerDepartment: [] },
+      getDepartmentCategories: jest.fn(),
+    }
+    const nextPropsWithoutDepartmentId = {
+      allCategories: {
+        categories: { 
+        rows: [] }},
+      getCategories: jest.fn(),
+      allCategories: { categoriesPerDepartment: [] },
+      getDepartmentCategories: jest.fn(),
+    }
+    const shallowWrapper = shallow(<SideNav {...myprops} />);
+    const spy = jest.spyOn(shallowWrapper.instance(), 'handleClickSideNav');
+    shallowWrapper.instance().handleClickSideNav();
+    shallowWrapper.instance().componentWillReceiveProps(myprops);
+    shallowWrapper.instance().componentWillReceiveProps(nextProps);
+    shallowWrapper.instance().componentWillReceiveProps(nextPropsWithoutDepartmentId);
+    expect(spy).toHaveBeenCalled();
   });
 });

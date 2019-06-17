@@ -3,7 +3,8 @@ import {
   FETCH_PRODUCT,
   FETCH_PRODUCTS_BY_DEPARTMENT,
   FETCH_PRODUCTS_BY_CATEGORY,
-  FETCH_PRODUCT_REVIEWS
+  FETCH_PRODUCT_REVIEWS,
+  FETCH_PRODUCTS_THROUGH_SEARCH
 } from "../types";
 
 const initialState = {
@@ -11,7 +12,8 @@ const initialState = {
   product: {},
   productsPerDepartment: [],
   productsPerCategory: [],
-  productReviews: []
+  productReviews: [],
+  productsAfterSearch: []
 };
 
 export default (state = initialState, action) => {
@@ -33,11 +35,18 @@ export default (state = initialState, action) => {
       };
     case FETCH_PRODUCTS_BY_DEPARTMENT:
       return {
+        ...state,
         productsPerDepartment: action.payload
       };
     case FETCH_PRODUCTS_BY_CATEGORY:
       return {
+        ...state,
         productsPerCategory: action.payload
+      };
+    case FETCH_PRODUCTS_THROUGH_SEARCH:
+      return {
+        ...state,
+        productsAfterSearch: action.payload
       };
     default:
       return state;

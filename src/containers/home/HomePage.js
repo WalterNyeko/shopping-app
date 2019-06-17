@@ -11,16 +11,26 @@ class HomePage extends Component {
 
   render() {
     const {
-      content,
       departmentId,
-      allDepartments: { departments }
+      allDepartments: { departments },
+      handleSearch,
+      handleInputChange,
+      dontRender,
+      content,
+      categoryId,
+      showSearchField
     } = this.props;
     return (
       <Fragment>
         <HomePageComponent
           content={content}
+          dontRender={dontRender}
+          categoryId={categoryId}
           departmentId={departmentId}
           departments={departments}
+          handleSearch={handleSearch}
+          handleInputChange={handleInputChange}
+          showSearchField={showSearchField}
         />
       </Fragment>
     );
