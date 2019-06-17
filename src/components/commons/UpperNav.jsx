@@ -1,19 +1,22 @@
 import React, { Fragment } from "react";
 import { NavLink } from "react-router-dom";
-import bag from "../../images/shopping-bag.png";
 import SearchIcon from "@material-ui/icons/Search";
 import InputBase from "@material-ui/core/InputBase";
 import { useStyles } from "../../styles/UpperNav";
 import { SpanModal } from "../../../src/containers/commons/SpanModal";
 import SignUpPage from "../../containers/customers/SignupPage";
 import LoginPage from "../../containers/customers/LoginPage";
+import "../../styles/UpperNav.css";
 
 const UpperNav = ({
   isLoggedIn,
   allDepartments,
   totalAmount,
   handleLogout,
-  cartItems
+  cartItems,
+  handleInputChange,
+  handleSearch,
+  handleClickNav
 }) => {
   const classes = useStyles();
   const { departments } = allDepartments;
@@ -23,17 +26,17 @@ const UpperNav = ({
         <div className="navbar-brand">
           {isLoggedIn ? (
             <Fragment>
-              <ul class="navbar-nav m-auto">
-                <li class="nav-item dropdown">
-                  <li class="nav-item">
-                    <a class="nav-link text-dark" href="#">
+              <ul className="navbar-nav m-auto">
+                <li className="nav-item dropdown">
+                  <li className="nav-item">
+                    <a className="nav-link text-dark" href="#">
                       Hey!
                     </a>
                   </li>
                 </li>
-                <li class="nav-item dropdown">
+                <li className="nav-item dropdown">
                   <a
-                    class="nav-link dropdown-toggle text-dark nav-dropdown"
+                    className="nav-link dropdown-toggle text-dark nav-dropdown"
                     href="#"
                     id="dropdown03"
                     data-toggle="dropdown"
@@ -42,7 +45,7 @@ const UpperNav = ({
                   >
                     {localStorage.getItem("user")}
                   </a>
-                  <div class="dropdown-menu" aria-labelledby="dropdown03">
+                  <div className="dropdown-menu" aria-labelledby="dropdown03">
                     <NavLink to="/mycart">
                       <i className="fas fa-shopping-cart text-dark ml-4" />
                       <sup>
@@ -54,14 +57,20 @@ const UpperNav = ({
                       </sup>{" "}
                       My Bag
                     </NavLink>
-                    <a class="dropdown-item" href="#">
-                      <i className="fas fa-user" />
-                      <sup>
-                        <span className="badge"> &nbsp; &nbsp; </span>
-                      </sup>{" "}
-                      My Profile
-                    </a>
-                    <a class="dropdown-item" href="#" onClick={handleLogout}>
+                    <NavLink to="/myprofile">
+                      <span className="dropdown-item" href="#">
+                        <i className="fas fa-user" />
+                        <sup>
+                          <span className="badge"> &nbsp; &nbsp; </span>
+                        </sup>{" "}
+                        My Profile
+                      </span>
+                    </NavLink>
+                    <a
+                      className="dropdown-item"
+                      href="#"
+                      onClick={handleLogout}
+                    >
                       <i className="fas fa-sign-out-alt" />
                       <sup>
                         <span className="badge"> &nbsp; &nbsp; </span>
@@ -143,7 +152,7 @@ const UpperNav = ({
           </form>
         </div>
       </nav>
-      <nav className="navbar navbar-expand-md fixed-top navbar-dark bg-dark nav-margin">
+      <nav className="nav-items-department navbar navbar-expand-md fixed-top navbar-dark bg-dark nav-margin">
         <NavLink to="/" className={classes.shopmateLogo}>
           SHOPMATE
         </NavLink>
@@ -159,26 +168,37 @@ const UpperNav = ({
           <span className="navbar-toggler-icon" />
         </button>
         <div className="collapse navbar-collapse" id="navbarsExample05">
-          <ul className="navbar-nav m-auto">
+          <ul
+            className="nav nav-pills mb-3 navbar-nav m-auto nav-link-item"
+            id="pills-tab"
+            role="tablist"
+          >
             {departments &&
               departments.map(({ department_id, name }) => (
                 <Fragment key={department_id}>
-                  <NavLink
-                    to={`/department/${department_id}`}
-                    className={classes.navItemsMainBar}
-                  >
-                    <li className="nav-item active">
-                      <a className="nav-link nav-link-item" href="#">
-                        {name}
-                        <span className="sr-only">(current)</span>
-                      </a>
-                    </li>
-                  </NavLink>
+                  <li className="nav-item nav-items-department">
+                    <a
+                      className="nav-link nav-items-department"
+                      onClick={() => handleClickNav(department_id)}
+                      id={`pills-${name}-tab`}
+                      data-toggle="pill"
+                      href="/"
+                      role="tab"
+                      aria-controls={`pills-${name}`}
+                      aria-selected="true"
+                    >
+                      {name}
+                    </a>
+                  </li>
                   &nbsp;&nbsp;&nbsp;&nbsp;
                 </Fragment>
               ))}
           </ul>
-          <form className="form-inline my-2 my-md-0 text-white">
+
+          <form
+            className="form-inline my-2 my-md-0 text-white"
+            onSubmit={handleSearch}
+          >
             <div className={classes.search}>
               <div className={classes.searchIcon}>
                 <SearchIcon />
@@ -189,6 +209,8 @@ const UpperNav = ({
                   root: classes.inputRoot,
                   input: classes.inputInput
                 }}
+                name="query"
+                onChange={handleInputChange}
               />
             </div>
           </form>

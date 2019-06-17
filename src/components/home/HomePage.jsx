@@ -4,12 +4,28 @@ import SideNav from "../../containers/commons/SideNav";
 import Footer from "../../containers/commons/Footer";
 
 const HomePage = props => {
-  const { content, departmentId, departments } = props;
+  const {
+    content,
+    departmentId,
+    departments,
+    handleInputChange,
+    handleSearch,
+    dontRender,
+    categoryId
+  } = props;
   return (
     <Fragment>
-      <UpperNav />
+      <UpperNav
+        handleInputChange={handleInputChange}
+        handleSearch={handleSearch}
+      />
       <div className="mycontent">
-        <SideNav content={content} departmentId={departmentId} />
+        <SideNav
+          content={content}
+          departmentId={departmentId}
+          dontRender={dontRender}
+          categoryId={categoryId}
+        />
       </div>
       <Footer departments={departments} />
     </Fragment>

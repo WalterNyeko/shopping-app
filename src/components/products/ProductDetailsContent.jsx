@@ -27,7 +27,8 @@ const ProductDetailsContent = ({
   colorsData,
   sizesData,
   handleAddReviews,
-  review
+  review,
+  errors
 }) => {
   const useStyles = makeStyles(theme => ({
     root: {
@@ -56,11 +57,21 @@ const ProductDetailsContent = ({
               />
             </div>
             <div class="col-md-7">
-              <h3>{product.name}</h3>
-              <h5 class="text-danger">
-                <strike>${product.price}</strike>
-              </h5>
-              <h3 class="text-danger ml-5">${product.discounted_price}</h3>
+              {product.discounted_price > 0 ? (
+                <>
+                  <h3>{product.name}</h3>
+                  <h5 class="text-danger">
+                    <strike>${product.price}</strike>
+                  </h5>
+                  <h3 class="text-danger ml-5">${product.discounted_price}</h3>
+                </>
+              ) : (
+                <>
+                  <h3>{product.name}</h3>
+                  <h3 class="text-danger ml-5">${product.price}</h3>
+                </>
+              )}
+
               <p>{product.description}</p>
               <h5>Color</h5>
               <FormControl className={classes.formControl}>
@@ -92,6 +103,12 @@ const ProductDetailsContent = ({
                     )}
                 </Select>
               </FormControl>
+              {errors.color && (
+                <span className="span-error">
+                  <br />
+                  {errors.color}
+                </span>
+              )}
               <h5>Size</h5>
               <FormControl className={classes.formControl}>
                 <InputLabel htmlFor="demo-controlled-open-select">
@@ -120,6 +137,12 @@ const ProductDetailsContent = ({
                     ))}
                 </Select>
               </FormControl>
+              {errors.size && (
+                <span className="span-error">
+                  <br />
+                  {errors.size}
+                </span>
+              )}
               <button
                 className="btn btn-danger text-center ml-5 mt-3"
                 onClick={handleSubmit}

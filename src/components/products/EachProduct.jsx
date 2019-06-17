@@ -7,10 +7,9 @@ import CardMedia from "@material-ui/core/CardMedia";
 import { useStyles } from "../../styles/Products";
 import Grid from "@material-ui/core/Grid";
 import "../../styles/Products.css";
-import { Drawer, Button } from "antd";
 import { NavLink } from "react-router-dom";
 
-const EachProduct = ({ products }) => {
+const EachProduct = ({ products, afterSearch }) => {
   const classes = useStyles();
 
   return (
@@ -47,7 +46,9 @@ const EachProduct = ({ products }) => {
                           <div className="row">
                             <div className="col-md-6">
                               <Typography className="text-danger">
-                                <strike>$ {price}</strike>
+                                <strike>
+                                  {discounted_price > 0 ? `$ ${price}` : ""}
+                                </strike>
                               </Typography>
                             </div>
                             <div className="col-md-6">
@@ -55,7 +56,10 @@ const EachProduct = ({ products }) => {
                                 className="btn btn-danger btn-sm"
                                 style={{ float: "right" }}
                               >
-                                $ {discounted_price}
+                                ${" "}
+                                {discounted_price > 0
+                                  ? discounted_price
+                                  : price}
                               </Typography>
                             </div>
                           </div>

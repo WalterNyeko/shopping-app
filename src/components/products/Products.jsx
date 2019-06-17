@@ -6,9 +6,8 @@ import { useStyles } from "../../styles/Products";
 import LinearProgress from "@material-ui/core/LinearProgress";
 import EachProduct from "../../containers/products/EachProduct";
 
-const Products = ({ products }) => {
+const Products = ({ products, departmentId, categoryId, afterSearch }) => {
   const classes = useStyles();
-
   return (
     <React.Fragment>
       <CssBaseline />
@@ -21,6 +20,9 @@ const Products = ({ products }) => {
               modalContent=""
               modalWidth="600px"
               visible
+              departmentId={departmentId}
+              categoryId={categoryId}
+              afterSearch={afterSearch}
             />
           </Grid>
         </Container>

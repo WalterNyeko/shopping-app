@@ -3,7 +3,8 @@ import {
   FETCH_PRODUCTS_BY_DEPARTMENT,
   FETCH_PRODUCTS_BY_CATEGORY,
   FETCH_PRODUCT,
-  FETCH_PRODUCT_REVIEWS
+  FETCH_PRODUCT_REVIEWS,
+  FETCH_PRODUCTS_THROUGH_SEARCH
 } from "../types";
 import { fetchData } from "../config";
 import {
@@ -17,8 +18,11 @@ import history from "../../helpers/history";
  *
  * @returns {Array}
  */
-export const getProducts = () => {
-  return fetchData("/products", FETCH_PRODUCTS);
+export const getProducts = ({ page, limit, description_length }) => {
+  return fetchData(
+    `/products?page=${page}&limit=${limit}&description_length=${description_length}`,
+    FETCH_PRODUCTS
+  );
 };
 
 /**
@@ -47,9 +51,14 @@ export const getProductReviews = productId => {
  * @param {String} departmentId
  * @returns {Array}
  */
-export const getProductsPerDepartment = departmentId => {
+export const getProductsPerDepartment = ({
+  departmentId,
+  page,
+  limit,
+  description_length
+}) => {
   return fetchData(
-    `/products/inDepartment/${departmentId}`,
+    `/products/inDepartment/${departmentId}?page=${page}&limit=${limit}&description_length=${description_length}`,
     FETCH_PRODUCTS_BY_DEPARTMENT
   );
 };
@@ -62,10 +71,33 @@ export const getProductsPerDepartment = departmentId => {
  *
  * @returns {Array}
  */
-export const getProductsPerCategory = categoryId => {
+export const getProductsPerCategory = ({
+  categoryId,
+  page,
+  limit,
+  description_length
+}) => {
   return fetchData(
-    `/products/inCategory/${categoryId}`,
+    `/products/inCategory/${categoryId}?page=${page}&limit=${limit}&description_length=${description_length}`,
     FETCH_PRODUCTS_BY_CATEGORY
+  );
+};
+
+/**
+ * search all the products
+ *
+ * @param {String} searchData
+ * @returns {Array}
+ */
+export const getProductsAfterSearch = ({
+  query_string,
+  page,
+  limit,
+  description_length
+}) => {
+  return fetchData(
+    `/products/search?query_string=${query_string}?page=${page}&limit=${limit}&description_length=${description_length}`,
+    FETCH_PRODUCTS_THROUGH_SEARCH
   );
 };
 
@@ -83,13 +115,13 @@ export const leaveReview = (productId, data) => dispatch => {
     method: "POST",
     headers: {
       "Content-type": "application/json",
-      Authorization: `${token}`
+      "USER-KEY": `${token}`
     },
     body: JSON.stringify(data)
   })
-    .then(resp => resp.json())
+    .then(resp => {})
     .then(responseData => {
-      const { message } = responseData.error;
-      showErrorNotification(message);
+      showSuccessNotification("Review Successfully Submitted");
+      dispatch(getProductReviews(productId));
     });
 };

@@ -7,7 +7,10 @@ import { getDepartments } from "../../store/actions/Departments";
 import { getProduct, getProductReviews } from "../../store/actions/Products";
 import ProductDeatilsContent from "../products/ProductDetailsContent";
 
-class ProductDeatilsPage extends Component {
+export class ProductDeatilsPage extends Component {
+  state = {
+    loading: true
+  };
   componentWillMount = () => {
     const {
       getDepartments,
@@ -39,6 +42,7 @@ class ProductDeatilsPage extends Component {
                 product={product}
                 productReviews={productReviews}
                 productId={productId}
+                loading={this.state.loading}
               />
             }
           />

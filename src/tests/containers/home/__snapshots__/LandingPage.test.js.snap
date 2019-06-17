@@ -1,0 +1,5 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`LandingPage should render well when there is no products 1`] = `ShallowWrapper {}`;
+
+exports[`LandingPage should render without crashing 1`] = `ShallowWrapper {}`;

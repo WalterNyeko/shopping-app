@@ -1,7 +1,9 @@
 import React, { Component, Fragment } from "react";
-import LandingPageComponent from "../../components/home/LandingPage";
+import LandingPageComponent from "../../containers/home/LandingPage";
 
 class Home extends Component {
+ 
+
   render() {
     return (
       <Fragment>
@@ -10,4 +12,5 @@ class Home extends Component {
     );
   }
 }
+
 export default Home;

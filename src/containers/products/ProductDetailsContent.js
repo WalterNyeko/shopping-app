@@ -5,7 +5,7 @@ import { getProductAttributes } from "../../store/actions/Attributes";
 import { addToShoppingCart } from "../../store/actions/Orders";
 import { leaveReview } from "../../store/actions/Products";
 
-class ProductDetailsContent extends Component {
+export class ProductDetailsContent extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -14,7 +14,8 @@ class ProductDetailsContent extends Component {
       size: "",
       review: "",
       openColor: false,
-      openSize: false
+      openSize: false,
+      errors: {}
     };
     this.changeRating = this.changeRating.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -41,13 +42,27 @@ class ProductDetailsContent extends Component {
       nextProps.theAttributes.attributes.length !==
       this.props.theAttributes.attributes.length
     ) {
-      const { getProductAttributes } = this.props;
+      const { getProductAttributes } = nextProps;
       const {
         product: { product_id }
-      } = this.props;
+      } = nextProps;
       getProductAttributes(product_id);
     }
   }
+
+  /**
+   * renders the validation errors for input fields
+   *
+   * @param {string} errorKey
+   * @param {string} message
+   *
+   * @returns {void}
+   */
+  inputErrors = (errorKey, message) => {
+    this.setState({
+      ...(this.state.errors[errorKey] = message)
+    });
+  };
 
   /**
    * ensures the most recent value for each jsx input element is stored in the state
@@ -129,7 +144,13 @@ class ProductDetailsContent extends Component {
       product_id: product_id,
       attributes: attributes
     };
-    addToShoppingCart(data);
+    if (!color) {
+      return this.inputErrors("color", "Please choose color");
+    } else if (!size) {
+      return this.inputErrors("size", "Please choose size");
+    } else {
+      addToShoppingCart(data);
+    }
   };
 
   /**
@@ -178,26 +199,29 @@ class ProductDetailsContent extends Component {
 
     return (
       <Fragment>
-        <ProductDetailsContentComponent
-          product={product}
-          rating={rating}
-          onStarClick={this.changeRating}
-          productReviews={productReviews}
-          handleSubmit={this.handleSubmit}
-          colorsData={colors}
-          sizesData={sizes}
-          color={this.state.color}
-          size={this.state.size}
-          colorOpen={this.state.openColor}
-          sizeOpen={this.state.openSize}
-          handleCloseColor={this.handleCloseColor}
-          handleCloseSize={this.handleCloseSize}
-          handleOpenColor={this.handleOpenColor}
-          handleOpenSize={this.handleOpenSize}
-          handleChange={this.handleChange}
-          handleAddReviews={this.handleAddReviews}
-          review={this.state.review}
-        />
+        {colors && sizes && (
+          <ProductDetailsContentComponent
+            product={product}
+            rating={rating}
+            onStarClick={this.changeRating}
+            productReviews={productReviews}
+            handleSubmit={this.handleSubmit}
+            colorsData={colors}
+            sizesData={sizes}
+            color={this.state.color}
+            size={this.state.size}
+            colorOpen={this.state.openColor}
+            sizeOpen={this.state.openSize}
+            handleCloseColor={this.handleCloseColor}
+            handleCloseSize={this.handleCloseSize}
+            handleOpenColor={this.handleOpenColor}
+            handleOpenSize={this.handleOpenSize}
+            handleChange={this.handleChange}
+            handleAddReviews={this.handleAddReviews}
+            review={this.state.review}
+            errors={this.state.errors}
+          />
+        )}
       </Fragment>
     );
   }

@@ -3,17 +3,29 @@ import { connect } from 'react-redux';
 import ProductsComponent from '../../components/products/Products';
 import { getProductsPerCategory } from '../../store/actions/Products';
 
-class CategoryProducts extends Component {
+export class CategoryProducts extends Component {
 
     componentWillMount = () => {
         const { getProductsPerCategory, categoryId } = this.props;
-        getProductsPerCategory(categoryId);
+        const requestData = {
+            page: 1,
+            limit: 8,
+            description_length: 100,
+            categoryId
+        }
+        getProductsPerCategory(requestData);
     } 
 
     componentWillReceiveProps = (nextProps) => {
         if(nextProps.categoryId !== this.props.categoryId){
             const { getProductsPerCategory, categoryId } = nextProps;
-            getProductsPerCategory(categoryId);
+            const requestData = {
+                page: 1,
+                limit: 8,
+                description_length: 100,
+                categoryId
+            }
+            getProductsPerCategory(requestData);
         }
  
     }
@@ -23,7 +35,8 @@ class CategoryProducts extends Component {
         return (
             <Fragment>
                 <ProductsComponent 
-                    products={productsPerCategory}/>
+                    products={productsPerCategory}
+                    categoryId={this.props.categoryId}/>
             </Fragment>
         )
     }

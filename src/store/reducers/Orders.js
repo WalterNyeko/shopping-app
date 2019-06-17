@@ -1,9 +1,19 @@
-import { FETCH_CART_ITEMS, FETCH_TOTAL_AMOUNT, GENERATE_CART_ID } from "../types";
+import {
+  FETCH_CART_ITEMS,
+  FETCH_TOTAL_AMOUNT,
+  GENERATE_CART_ID,
+  FETCH_MY_ORDERS,
+  FETCH_ORDER_BY_ID,
+  FETCH_ORDER_DETAIL_BY_ID
+} from "../types";
 
 const initialState = {
   cartItems: [],
   totalAmountOfItemsInCart: {},
-  uniqueCartId: {}
+  uniqueCartId: {},
+  myOrders: [],
+  orderOfParticularId: [],
+  orderDetails: {}
 };
 
 export default (state = initialState, action) => {
@@ -22,6 +32,21 @@ export default (state = initialState, action) => {
       return {
         ...state,
         uniqueCartId: action.payload
+      };
+    case FETCH_MY_ORDERS:
+      return {
+        ...state,
+        myOrders: action.payload
+      };
+    case FETCH_ORDER_BY_ID:
+      return {
+        ...state,
+        orderOfParticularId: action.payload
+      };
+    case FETCH_ORDER_DETAIL_BY_ID:
+      return {
+        ...state,
+        orderDetails: action.payload
       };
     default:
       return state;
